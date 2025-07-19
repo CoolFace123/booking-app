@@ -1,15 +1,18 @@
-import express from 'express';
-import cors from 'cors';
-import trainersRoute from './routes/trainers.js';
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
+const trainerRoutes = require('./routes/trainers');
 
 const app = express();
-const PORT = process.env.PORT || 4000;
-
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/trainers', trainersRoute);
+// Routes
+app.use('/api/trainers', trainerRoutes);
 
+// Start
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-  console.log(`Backend fut a http://localhost:${PORT} címen`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
